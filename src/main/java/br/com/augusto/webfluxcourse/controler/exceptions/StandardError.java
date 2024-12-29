@@ -1,4 +1,4 @@
-package br.com.augusto.webfluxcourse.exceptions;
+package br.com.augusto.webfluxcourse.controler.exceptions;
 
 import lombok.Builder;
 import lombok.Data;
