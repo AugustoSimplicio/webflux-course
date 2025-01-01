@@ -1,6 +1,7 @@
 package br.com.augusto.webfluxcourse.controler.impl;
 
 import br.com.augusto.webfluxcourse.controler.UserController;
+import br.com.augusto.webfluxcourse.mapper.UserMapper;
 import br.com.augusto.webfluxcourse.model.request.UserRequest;
 import br.com.augusto.webfluxcourse.model.response.UserResponse;
 import br.com.augusto.webfluxcourse.service.UserService;
@@ -21,6 +22,8 @@ public class UserControllerImpl implements UserController {
 
     private final UserService userService;
 
+    private final UserMapper userMapper;
+
     @Override
     public ResponseEntity<Mono<Void>> save(UserRequest request) {
         return ResponseEntity
@@ -29,13 +32,13 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Mono<UserResponse>> find(String id) {
-        return null;
+    public ResponseEntity<Mono<UserResponse>> findById(String id) {
+        return ResponseEntity.ok(userService.findById(id).map(userMapper::toResponse)) ;
     }
 
     @Override
     public ResponseEntity<Flux<UserResponse>> findAll() {
-        return null;
+        return ResponseEntity.ok(userService.findAll().map(userMapper::toResponse));
     }
 
     @Override
